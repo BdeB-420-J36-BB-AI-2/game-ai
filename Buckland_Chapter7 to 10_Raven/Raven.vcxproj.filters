@@ -268,6 +268,12 @@
     <ClCompile Include="..\Common\misc\WindowUtils.cpp">
       <Filter>Common</Filter>
     </ClCompile>
+    <ClCompile Include="Time\PrecisionTimer.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="misc\WindowUtils.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Raven_Bot.h">
@@ -606,6 +612,23 @@
     <ClInclude Include="..\Common\misc\WindowUtils.h">
       <Filter>Common</Filter>
     </ClInclude>
+    <ClInclude Include="misc\utils.h" />
+    <ClInclude Include="Time\PrecisionTimer.h" />
+    <ClInclude Include="misc\Cgdi.h" />
+    <ClInclude Include="misc\windowutils.h" />
+    <ClInclude Include="debug\DebugConsole.h" />
+    <ClInclude Include="graph\SparseGraph.h" />
+    <ClInclude Include="2d\Vector2D.h" />
+    <ClInclude Include="game\MovingEntity.h" />
+    <ClInclude Include="Script\scriptor.h" />
+    <ClInclude Include="fuzzy\FuzzySet.h" />
+    <ClInclude Include="Goals\Goal_Composite.h" />
+    <ClInclude Include="Game\BaseGameEntity.h" />
+    <ClInclude Include="graph\NodeTypeEnumerations.h" />
+    <ClInclude Include="lua\luahelperfunctions.h" />
+    <ClInclude Include="2d\Wall2D.h" />
+    <ClInclude Include="fuzzy\fuzzyvariable.h" />
+    <ClInclude Include="misc\TypeToString.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Params.lua">
@@ -617,6 +640,7 @@
     <None Include="maps\Raven_DM1_Doors.map">
       <Filter>Resource Files\maps</Filter>
     </None>
+    <None Include="Directory.Build.props" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="note.txt">
@@ -627,5 +651,8 @@
     <ResourceCompile Include="Script1.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="lua5.1.lib" />
   </ItemGroup>
 </Project>

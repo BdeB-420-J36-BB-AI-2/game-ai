@@ -259,6 +259,7 @@
     <ClCompile Include="GraveMarkers.cpp" />
     <ClCompile Include="lua\Raven_Scriptor.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="misc\WindowUtils.cpp" />
     <ClCompile Include="navigation\Raven_PathPlanner.cpp" />
     <ClCompile Include="Raven_Bot.cpp" />
     <ClCompile Include="Raven_Door.cpp" />
@@ -269,6 +270,7 @@
     <ClCompile Include="Raven_TargetingSystem.cpp" />
     <ClCompile Include="Raven_UserOptions.cpp" />
     <ClCompile Include="Raven_WeaponSystem.cpp" />
+    <ClCompile Include="Time\PrecisionTimer.cpp" />
     <ClCompile Include="triggers\Trigger_HealthGiver.cpp" />
     <ClCompile Include="triggers\Trigger_SoundNotify.cpp" />
     <ClCompile Include="triggers\Trigger_WeaponGiver.cpp" />
@@ -331,6 +333,8 @@
     <ClInclude Include="..\Common\Triggers\TriggerSystem.h" />
     <ClInclude Include="..\Common\Triggers\Trigger_LimitedLifeTime.h" />
     <ClInclude Include="..\Common\Triggers\Trigger_ReSpawning.h" />
+    <ClInclude Include="2d\Vector2D.h" />
+    <ClInclude Include="2d\Wall2D.h" />
     <ClInclude Include="armory\Projectile_Bolt.h" />
     <ClInclude Include="armory\Projectile_Pellet.h" />
     <ClInclude Include="armory\Projectile_Rocket.h" />
@@ -342,12 +346,18 @@
     <ClInclude Include="armory\Weapon_RocketLauncher.h" />
     <ClInclude Include="armory\Weapon_ShotGun.h" />
     <ClInclude Include="constants.h" />
+    <ClInclude Include="debug\DebugConsole.h" />
+    <ClInclude Include="fuzzy\FuzzySet.h" />
+    <ClInclude Include="fuzzy\fuzzyvariable.h" />
+    <ClInclude Include="Game\BaseGameEntity.h" />
+    <ClInclude Include="game\MovingEntity.h" />
     <ClInclude Include="goals\AttackTargetGoal_Evaluator.h" />
     <ClInclude Include="goals\ExploreGoal_Evaluator.h" />
     <ClInclude Include="goals\GetHealthGoal_Evaluator.h" />
     <ClInclude Include="goals\GetWeaponGoal_Evaluator.h" />
     <ClInclude Include="goals\Goal_AdjustRange.h" />
     <ClInclude Include="goals\Goal_AttackTarget.h" />
+    <ClInclude Include="Goals\Goal_Composite.h" />
     <ClInclude Include="goals\Goal_DodgeSideToSide.h" />
     <ClInclude Include="goals\Goal_Evaluator.h" />
     <ClInclude Include="goals\Goal_Explore.h" />
@@ -363,8 +373,15 @@
     <ClInclude Include="goals\Goal_Wander.h" />
     <ClInclude Include="goals\Raven_Feature.h" />
     <ClInclude Include="goals\Raven_Goal_Types.h" />
+    <ClInclude Include="graph\NodeTypeEnumerations.h" />
+    <ClInclude Include="graph\SparseGraph.h" />
     <ClInclude Include="GraveMarkers.h" />
+    <ClInclude Include="lua\luahelperfunctions.h" />
     <ClInclude Include="lua\Raven_Scriptor.h" />
+    <ClInclude Include="misc\Cgdi.h" />
+    <ClInclude Include="misc\TypeToString.h" />
+    <ClInclude Include="misc\utils.h" />
+    <ClInclude Include="misc\windowutils.h" />
     <ClInclude Include="navigation\PathEdge.h" />
     <ClInclude Include="navigation\PathManager.h" />
     <ClInclude Include="navigation\Raven_PathPlanner.h" />
@@ -382,12 +399,15 @@
     <ClInclude Include="Raven_UserOptions.h" />
     <ClInclude Include="Raven_WeaponSystem.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Script\scriptor.h" />
+    <ClInclude Include="Time\PrecisionTimer.h" />
     <ClInclude Include="triggers\Trigger_HealthGiver.h" />
     <ClInclude Include="triggers\Trigger_OnButtonSendMsg.h" />
     <ClInclude Include="triggers\Trigger_SoundNotify.h" />
     <ClInclude Include="triggers\Trigger_WeaponGiver.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Directory.Build.props" />
     <None Include="maps\Raven_DM1.map" />
     <None Include="maps\Raven_DM1_Doors.map" />
     <None Include="Params.lua" />
@@ -397,6 +417,9 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Script1.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="lua5.1.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

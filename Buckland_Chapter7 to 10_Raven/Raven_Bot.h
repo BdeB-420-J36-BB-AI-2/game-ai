@@ -16,6 +16,7 @@
 #include "game/MovingEntity.h"
 #include "misc/utils.h"
 #include "Raven_TargetingSystem.h"
+#include "Raven_ObjectEnumerations.h"
 
 
 class Raven_PathPlanner;

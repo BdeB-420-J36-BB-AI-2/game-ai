@@ -18,10 +18,6 @@
 #include <string>
 #include <list>
 
-#include "graph/SparseGraph.h"
-#include "Raven_ObjectEnumerations.h"
-#include "2d/Wall2D.h"
-#include "misc/utils.h"
 #include "game/EntityFunctionTemplates.h"
 #include "Raven_Bot.h"
 #include "navigation/pathmanager.h"
