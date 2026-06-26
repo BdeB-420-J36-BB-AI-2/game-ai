@@ -5,6 +5,7 @@
 #include "armory/Weapon_Blaster.h"
 #include "Raven_Bot.h"
 #include "misc/utils.h"
+#include "misc/Cgdi.h"
 #include "lua/Raven_Scriptor.h"
 #include "Raven_Game.h"
 #include "Raven_UserOptions.h"

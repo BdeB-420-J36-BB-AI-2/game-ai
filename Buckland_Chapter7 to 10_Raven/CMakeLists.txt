@@ -1,10 +1,10 @@
 # Chapter 7-10 - Raven (Win32 / GDI application + Lua scripting).
 #
-# Raven keeps locally-modified copies of several Common files under its own misc/ and Time/
-# folders. The original Raven.vcxproj listed BOTH the local and the ..\Common\ copies of
-# PrecisionTimer.cpp and WindowUtils.cpp, which cannot link (duplicate symbols). Here we
-# compile the LOCAL copies (the rest of Raven includes the local headers, which differ from
-# Common) and pull everything else from Common.
+# Raven's own misc/ and Time/ folders contain only thin FORWARDING shims: the local headers
+# (misc/Cgdi.h, misc/windowutils.h, Time/PrecisionTimer.h) just #include the matching
+# ..\Common\ header, and the local misc/WindowUtils.cpp / Time/PrecisionTimer.cpp are EMPTY.
+# So the real implementations come from Common; we compile the Common .cpp files and let the
+# local shim headers (found first on the include path) redirect to Common.
 cmake_minimum_required(VERSION 3.15)
 project(Raven CXX)
 
@@ -34,8 +34,6 @@ add_executable(Raven WIN32
   Raven_WeaponSystem.cpp
   lua/Raven_Scriptor.cpp
   navigation/Raven_PathPlanner.cpp
-  misc/WindowUtils.cpp                 # local copy (Common copy intentionally omitted)
-  Time/PrecisionTimer.cpp              # local copy (Common copy intentionally omitted)
   armory/Projectile_Bolt.cpp
   armory/Projectile_Pellet.cpp
   armory/Projectile_Rocket.cpp
@@ -85,12 +83,15 @@ add_executable(Raven WIN32
   ${COMMON_DIR}/Messaging/MessageDispatcher.cpp
   ${COMMON_DIR}/misc/Cgdi.cpp
   ${COMMON_DIR}/misc/FrameCounter.cpp
-  ${COMMON_DIR}/Time/CrudeTimer.cpp)
+  ${COMMON_DIR}/misc/WindowUtils.cpp
+  ${COMMON_DIR}/Time/CrudeTimer.cpp
+  ${COMMON_DIR}/Time/PrecisionTimer.cpp)
 
 # Raven's own folder (and its local subfolders) come first so its modified headers win,
 # then the shared Common subdirs (mirrors Raven's Directory.Build.props).
 target_include_directories(Raven PRIVATE
   ${CMAKE_CURRENT_SOURCE_DIR}
+  ${COMMON_DIR}/cmake/compat   # afxres.h shim for the resource compiler
   ${CMAKE_CURRENT_SOURCE_DIR}/misc
   ${CMAKE_CURRENT_SOURCE_DIR}/Time
   ${CMAKE_CURRENT_SOURCE_DIR}/lua

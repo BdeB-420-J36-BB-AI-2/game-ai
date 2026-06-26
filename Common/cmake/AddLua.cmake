@@ -26,11 +26,13 @@ if(NOT TARGET lua51)
     target_link_libraries(lua51 INTERFACE ${LUA_LIBRARIES})
   else()
     message(STATUS "Buckland: system Lua not found, fetching Lua 5.1.5 source")
+    enable_language(C)   # Lua is C; the sample projects only declare CXX
     include(FetchContent)
     FetchContent_Declare(
       lua_src
       URL      https://www.lua.org/ftp/lua-5.1.5.tar.gz
       URL_HASH SHA256=2640fc56a795f29d28ef15e13c34a47e223960b0240e8cb0a82d9b0738695333
+      DOWNLOAD_EXTRACT_TIMESTAMP TRUE
     )
     FetchContent_MakeAvailable(lua_src)
 
@@ -40,6 +42,9 @@ if(NOT TARGET lua51)
     list(FILTER _LUA_SOURCES EXCLUDE REGEX "/(lua|luac)\\.c$")
 
     add_library(lua51 STATIC ${_LUA_SOURCES})
+    # The Buckland sources contain  #pragma comment(lib, "lua5.1.lib")  so the produced
+    # import library must be named lua5.1.lib for the linker to find it.
+    set_target_properties(lua51 PROPERTIES OUTPUT_NAME "lua5.1")
     target_include_directories(lua51 PUBLIC
       "${lua_src_SOURCE_DIR}/src"
       "${_BUCKLAND_LUA_HELPERS}")

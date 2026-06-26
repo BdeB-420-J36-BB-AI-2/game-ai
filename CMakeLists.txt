@@ -32,14 +32,28 @@ add_subdirectory("Buckland_Chapter3-Steering Behaviors")
 add_subdirectory("Buckland_Chapter4-SimpleSoccer")
 add_subdirectory("Buckland_Chapter5-Pathfinder")
 
-# --- Chapter 6: Scripting (Lua / Luabind) ---
+# --- Chapter 6: Scripting (plain Lua) ---
 add_subdirectory("Buckland_Chapter6_Scripting_Source/StartHere")
 add_subdirectory("Buckland_Chapter6_Scripting_Source/cpp_using_lua")
 add_subdirectory("Buckland_Chapter6_Scripting_Source/lua_using_cpp")
-add_subdirectory("Buckland_Chapter6_Scripting_Source/CreatingClassesUsingLuabind")
-add_subdirectory("Buckland_Chapter6_Scripting_Source/ExposingCPPClassesUsingLuabind")
-add_subdirectory("Buckland_Chapter6_Scripting_Source/ExposingCPPFunctionsToLua")
-add_subdirectory("Buckland_Chapter6_Scripting_Source/ScriptedStateMachine")
+
+# --- Chapter 6: Scripting (Luabind) - only if Boost is available ---
+# These four samples need Boost. Probe for it once so a missing Boost doesn't break the
+# whole-tree configure; they are still buildable standalone (each reports the requirement).
+if(POLICY CMP0167)
+  cmake_policy(SET CMP0167 NEW)
+endif()
+find_package(Boost CONFIG QUIET)
+if(Boost_FOUND)
+  add_subdirectory("Buckland_Chapter6_Scripting_Source/CreatingClassesUsingLuabind")
+  add_subdirectory("Buckland_Chapter6_Scripting_Source/ExposingCPPClassesUsingLuabind")
+  add_subdirectory("Buckland_Chapter6_Scripting_Source/ExposingCPPFunctionsToLua")
+  add_subdirectory("Buckland_Chapter6_Scripting_Source/ScriptedStateMachine")
+else()
+  message(STATUS "Buckland: Boost not found - skipping the Chapter 6 Luabind samples "
+                 "(CreatingClassesUsingLuabind, ExposingCPPClassesUsingLuabind, "
+                 "ExposingCPPFunctionsToLua, ScriptedStateMachine).")
+endif()
 
 # --- Chapter 7-10: Raven (Win32 GDI + Lua) ---
 add_subdirectory("Buckland_Chapter7 to 10_Raven")

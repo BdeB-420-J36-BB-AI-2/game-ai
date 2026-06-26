@@ -41,6 +41,7 @@ add_executable(SimpleSoccer WIN32
 
 target_include_directories(SimpleSoccer PRIVATE
   ${CMAKE_CURRENT_SOURCE_DIR}
+  ${COMMON_DIR}/cmake/compat   # afxres.h shim for the resource compiler
   ${COMMON_DIR}
   ${COMMON_DIR}/2D
   ${COMMON_DIR}/Game

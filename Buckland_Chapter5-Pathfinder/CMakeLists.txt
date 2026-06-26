@@ -22,6 +22,7 @@ add_executable(Pathfinder WIN32
 
 target_include_directories(Pathfinder PRIVATE
   ${CMAKE_CURRENT_SOURCE_DIR}
+  ${COMMON_DIR}/cmake/compat   # afxres.h shim for the resource compiler
   ${COMMON_DIR}
   ${COMMON_DIR}/2D
   ${COMMON_DIR}/Graph

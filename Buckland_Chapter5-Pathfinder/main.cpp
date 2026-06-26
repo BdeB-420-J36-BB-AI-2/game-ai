@@ -512,7 +512,7 @@ HWND CreateToolBar(HWND hwndParent, HINSTANCE hinstMain)
   //add bitmaps to the buttons
   TBADDBITMAP tb;
   tb.hInst = NULL;
-  tb.nID = (UINT_PTR)LoadBitmap((HINSTANCE)GetWindowLong(hwndParent, GWL_HINSTANCE),MAKEINTRESOURCE(IDR_TOOLBAR1));
+  tb.nID = (UINT_PTR)LoadBitmap((HINSTANCE)GetWindowLongPtr(hwndParent, GWLP_HINSTANCE),MAKEINTRESOURCE(IDR_TOOLBAR1));
 
   int idx = SendMessage (hwndToolBar, TB_ADDBITMAP, NumButtons, (LPARAM)&tb);
 

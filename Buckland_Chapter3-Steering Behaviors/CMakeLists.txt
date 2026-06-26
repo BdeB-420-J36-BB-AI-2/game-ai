@@ -29,6 +29,7 @@ add_executable(Steering WIN32
 
 target_include_directories(Steering PRIVATE
   ${CMAKE_CURRENT_SOURCE_DIR}
+  ${COMMON_DIR}/cmake/compat   # afxres.h shim for the resource compiler
   ${COMMON_DIR}
   ${COMMON_DIR}/2D
   ${COMMON_DIR}/misc
