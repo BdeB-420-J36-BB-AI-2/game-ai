@@ -137,3 +137,6 @@ x86/
 
 # Built Visual Studio Code Extensions
 *.vsix
+*.vcxproj
+*.filters
+*.sln
